@@ -1,0 +1,45 @@
+layout:
+  actions:
+    - '@setBlockTheme':
+        themes: 'header.html.twig'
+
+    - '@remove':
+        id: navigation_bar
+
+    - '@remove':
+        id: page_header
+
+    - '@add':
+        id: gwd_header_wrapper
+        parentId: page_container
+        blockType: container
+        prepend: true
+        options:
+          attr:
+            class: gwd-header-wrapper
+
+    - '@add':
+        id: gwd_header_inner
+        parentId: gwd_header_wrapper
+        blockType: container
+        options:
+          attr:
+            class: gwd-header-inner container-fluid
+
+
+    - '@add':
+        id: header_logo
+        parentId: gwd_header_inner
+        blockType: container
+        options:
+          attr:
+            class: header-logo-link
+
+
+    - '@add':
+        id: header_main_menu
+        parentId: gwd_header_inner
+        blockType: block
+        options:
+          attr:
+            class: header-main-menu

@@ -1,0 +1,30 @@
+{% block _gwd_header_wrapper_widget %}
+    <header {{ block('block_attributes') }}>
+        {{ block_widget(block) }}
+    </header>
+{% endblock %}
+
+
+{% block _gwd_header_inner_widget %}
+    <div {{ block('block_attributes') }}>
+        <div class="header-content">
+            {{ block_widget(block) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block _header_logo_widget %}
+    <a href="/" class="logo-link">
+        <img src="{{ asset('bundles/gwdtheme/images/logo.png') }}" alt="GWD Store" class="logo-image">
+    </a>
+{% endblock %}
+
+
+
+
+{% block _header_main_menu_widget %}
+    <nav class="header-navigation" {{ block('block_attributes') }}>
+        {{ oro_menu_render('commerce_top_nav') }}
+    </nav>
+{% endblock %}
