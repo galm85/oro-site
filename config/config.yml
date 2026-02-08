@@ -132,6 +132,7 @@ oro_theme:
 oro_layout:
     enabled_themes:
         - default
+        - gwd_theme
 
 oro_locale:
     formatting_code: en

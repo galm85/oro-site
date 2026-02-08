@@ -2,7 +2,7 @@ version: '3.5'
 services:
   pgsql:
     image: oroinc/pgsql:13.7-1-alpine
-    ports: ['5432']
+    ports: ['57465:5432']
     labels:
       com.symfony.server.service-prefix: ORO_DB
     environment:
@@ -20,7 +20,7 @@ services:
     restart: on-failure
   redis:
     image: redis:6-alpine
-    ports: ["6379"]
+    ports: ["57464:6379"]
     labels:
       com.symfony.server.service-prefix: ORO_REDIS
   mailcatcher:
