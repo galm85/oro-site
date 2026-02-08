@@ -1,0 +1,62 @@
+layout:
+  actions:
+    - '@setBlockTheme':
+        themes: 'footer.html.twig'
+
+    - '@remove':
+        id: page_footer_container
+
+    - '@remove':
+        id: copyright
+
+    - '@add':
+        id: gwd_footer_wrapper
+        parentId: page_footer
+        blockType: container
+        options:
+          attr:
+            class: footer-wrapper
+
+    - '@add':
+        id: gwd_footer_nav
+        parentId: gwd_footer_wrapper
+        blockType: block
+        options:
+          attr:
+            class: footer-nav
+
+
+    - '@add':
+        id: gwd_footer_logo
+        parentId: gwd_footer_wrapper
+        blockType: container
+        options:
+          attr:
+            class: footer-logo
+
+    - '@add':
+        id: gwd_footer_sec_nav
+        parentId: gwd_footer_wrapper
+        blockType: block
+        options:
+          attr:
+            class: footer-sec-nav
+
+
+    - '@add':
+        id: gwd_footer_icons
+        parentId: gwd_footer_wrapper
+        blockType: container
+        options:
+          attr:
+            class: footer-icons
+
+
+
+    - '@add':
+        id: gwd_footer_copyrights
+        parentId: gwd_footer_wrapper
+        blockType: container
+        options:
+          attr:
+            class: footer-copyrights

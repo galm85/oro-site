@@ -3,3 +3,6 @@ layout:
   imports:
     -
       id: header
+
+    -
+      id: footer
