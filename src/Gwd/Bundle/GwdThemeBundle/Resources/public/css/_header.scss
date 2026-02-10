@@ -10,13 +10,60 @@
 
 
 .gwd-header-top{
-  height: 100px;
-  background-color: #333333;
+  height: 90px;
+  background-color: $dark_blue;
+  padding-inline: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+    .header-logo-image{
+      width: 173px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .gwd-search-bar{
+      position: relative;
+      width: fit-content;
+
+      .search-widget__input{
+        width: 358px;
+        border-color: #68d7ef;
+        color: #c2cddc;
+        height: 38px;
+        font-size: 16px;
+        background: transparent;
+        border-radius: 33px;
+      }
+    }
+
+
 }
+
+
 
 .gwd-header-inner {
   padding: 0 20px;
+  background-color: $white;
+  padding-inline: 40px;
+  color: $text_blue;
+  .gwd-login-container{
+    a {
+      span {
+        color: $text_blue;
+      }
+      svg{
+        fill: $text_blue;
+      }
+    }
+  }
 }
+
+
+
+
+
 
 .header-content {
   display: flex;
@@ -28,22 +75,7 @@
   gap: 40px;
 }
 
-.header-logo {
-  flex-shrink: 0;
 
-  a {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-
-    &:hover {
-      color: #0066cc;
-    }
-  }
-}
 
 .header-navigation {
   flex-grow: 1;
@@ -114,10 +146,7 @@
   }
 }
 
-.logo-image{
-  width: 60px;
-  height: 60px;
-}
+
 // Responsive design
 @media (max-width: 1200px) {
   .header-content {

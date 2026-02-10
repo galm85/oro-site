@@ -6,9 +6,7 @@
 
 {% block _gwd_header_top_widget %}
     <div {{ block('block_attributes') }}>
-        <div class="header-content">
             {{ block_widget(block) }}
-        </div>
     </div>
 {% endblock %}
 
@@ -21,9 +19,9 @@
 {% endblock %}
 
 
-{% block _header_logo_widget %}
+{% block _gwd_header_logo_widget %}
     <a href="/" class="logo-link">
-        <img src="{{ asset('bundles/gwdtheme/images/logo.png') }}" alt="GWD Store" class="logo-image">
+        <img src="{{ asset('bundles/gwdtheme/images/header/hylogo.webp') }}" alt="GWD Store" class="header-logo-image">
     </a>
 {% endblock %}
 
@@ -35,3 +33,6 @@
         {{ oro_menu_render('commerce_top_nav') }}
     </nav>
 {% endblock %}
+
+
+

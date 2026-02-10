@@ -30,12 +30,9 @@ layout:
 
     # header Logo
     - '@add':
-        id: header_logo
+        id: gwd_header_logo
         parentId: gwd_header_top
-        blockType: container
-        options:
-          attr:
-            class: header-logo-link
+        blockType: block
 
     # search bar
     - '@move':

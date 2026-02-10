@@ -1,0 +1,6 @@
+oro:
+  website_search:
+    search_field_placeholder: 'אפשר לחפש לפי מוצר, מותג או מק״ט....'
+    search_label: 'חיפוש'
+    search_submit_btn: 'חפש'
+    search_submit_btn_reset: 'נקה'
