@@ -4,6 +4,13 @@
     </header>
 {% endblock %}
 
+{% block _gwd_header_top_widget %}
+    <div {{ block('block_attributes') }}>
+        <div class="header-content">
+            {{ block_widget(block) }}
+        </div>
+    </div>
+{% endblock %}
 
 {% block _gwd_header_inner_widget %}
     <div {{ block('block_attributes') }}>
