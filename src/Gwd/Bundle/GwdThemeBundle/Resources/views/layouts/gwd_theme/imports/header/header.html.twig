@@ -33,4 +33,65 @@
 {% endblock %}
 
 
+{% block _top_sign_in_link_widget %}
+    {% import '@OroUI/layouts/renderIcon.html.twig' as renderIcon %}
+    {% set attr = layout_attr_defaults(attr, {
+        '~class': ' navigation-menu__button navigation-menu__inner text-nowrap no-decoration',
+        'href': path(route_name)
+    }) %}
 
+    {% if oro_config_value('oro_shopping_list.availability_for_guests') == true %}
+        {% set attr = layout_attr_defaults(attr, {
+            '~class': ' hide-block-on-mobile',
+            'data-dom-relocation-options': {
+                responsive: [
+                    {
+                        viewport: 'mobile',
+                        moveTo: '[data-sidebar-menus-top]',
+                        endpointClass: 'navigation-menu__button--side-menu'
+                    }
+                ]
+            }|json_encode
+        }) %}
+    {% endif %}
+    <div class="login-icon">
+        {{ renderIcon.icon({name: 'user'}) }}
+    </div>
+    <a {{ block('block_attributes') }} aria-label="{{ text_aria_label|trans }}">
+        <span class="hide-label-on-{{ oro_config_value('oro_product.guest_quick_order_form') == true ? 'tablet' : 'mobile-big' }}">
+            {{'oro.customer.customeruser.profile.login'|trans -}}
+        </span>
+
+    </a>
+
+    <span class="separator"> / </span>
+{% endblock %}
+
+{% block _top_registration_link_widget %}
+    {% import '@OroUI/layouts/renderIcon.html.twig' as renderIcon %}
+    {% set attr = layout_attr_defaults(attr, {
+        '~class': ' navigation-menu__button navigation-menu__inner text-nowrap no-decoration',
+        'href': path(route_name)
+    }) %}
+
+    {% if oro_config_value('oro_shopping_list.availability_for_guests') == true %}
+        {% set attr = layout_attr_defaults(attr, {
+            '~class': ' hide-block-on-mobile',
+            'data-dom-relocation-options': {
+                responsive: [
+                    {
+                        viewport: 'mobile',
+                        moveTo: '[data-sidebar-menus-top]',
+                        endpointClass: 'navigation-menu__button--side-menu'
+                    }
+                ]
+            }|json_encode
+        }) %}
+    {% endif %}
+
+    <a {{ block('block_attributes') }} aria-label="{{ text_aria_label|trans }}">
+        <span class="hide-label-on-{{ oro_config_value('oro_product.guest_quick_order_form') == true ? 'tablet' : 'mobile-big' }}">
+            {{'oro.customer.customeruser.profile.signup'|trans -}}
+        </span>
+    </a>
+{% endblock %}

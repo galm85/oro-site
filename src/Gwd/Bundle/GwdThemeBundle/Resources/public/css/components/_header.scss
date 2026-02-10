@@ -35,6 +35,8 @@
         font-size: 16px;
         background: transparent;
         border-radius: 33px;
+        font-family: $main_font;
+
       }
     }
 
@@ -126,12 +128,33 @@
   }
 
   .gwd-login-container{
+    gap: 0;
+    display: flex;
+    align-items: center;
     a {
+      padding: 0;
+      display: inline-block;
+      line-height: 44px;
       span {
         color: $text_blue;
+        font-weight: 400;
+        font-size: 16px;
+        font-family: $main_font;
       }
       svg{
         fill: $text_blue;
+      }
+    }
+
+    .separator{
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .login-icon{
+      svg{
+        width: 30px;
+        margin-inline-end: 10px;
       }
     }
   }
