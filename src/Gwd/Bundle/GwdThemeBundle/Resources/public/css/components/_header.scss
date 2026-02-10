@@ -60,7 +60,7 @@
     justify-content: center;
 
     // Target the OroCommerce menu structure
-    > ul{
+    > ul {
       display: flex;
       list-style: none;
       margin: 0;
@@ -75,9 +75,10 @@
         white-space: nowrap;
         padding-inline: 20px;
         height: 25px;
-        &:not(:last-child){
-          border-left: 1px solid $gray_100;
+        position: relative; // Added for dropdown positioning
 
+        &:not(:last-child) {
+          border-left: 1px solid $gray_100;
         }
 
         > a {
@@ -96,8 +97,8 @@
           }
         }
 
-        // Dropdown submenu styles
-        > ul {
+        // Regular dropdown submenu (for non-first items)
+        > ul:not(.menu_level_1) {
           position: absolute;
           background: #ffffff;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -120,10 +121,161 @@
           }
         }
 
-        &:hover > ul {
+        // NEW: Mega menu dropdown (only for first item)
+        &.first {
+          .submenu-wrapper {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1001;
+            padding: 30px;
+            min-width: 700px;
+            margin-top: 10px;
+          }
+
+          &:hover .submenu-wrapper {
+            display: flex;
+            gap: 40px;
+          }
+        }
+
+        // Show regular dropdown on hover
+        &:hover > ul:not(.menu_level_1) {
           display: flex;
         }
       }
+    }
+  }
+
+  // Mega menu columns
+  .submenu-wrapper {
+    flex-direction: row-reverse;
+
+    .submenu-column {
+      flex: 1;
+      &.categories {
+        .menu_level_1 {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          > li {
+            margin-bottom: 12px;
+
+            > a {
+              color: $blue_700;
+              text-decoration: none;
+              font-size: 16px;
+              font-weight: 600;
+              font-family: $main_font;
+              display: block;
+              padding: 5px 0;
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: #0066cc;
+              }
+            }
+
+            .menu_level_2 {
+              list-style: none;
+              margin: 8px 0 0 0;
+              padding-right: 15px;
+
+              li {
+                margin-bottom: 6px;
+
+                a {
+                  color: #666;
+                  font-size: 14px;
+                  font-weight: 400;
+                  font-family: $main_font;
+                  padding: 3px 0;
+                  display: block;
+                  transition: color 0.3s ease;
+
+                  &:hover {
+                    color: #0066cc;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.brands {
+        h4 {
+          font-size: 18px;
+          font-weight: 700;
+          font-family: $main_font;
+          margin-bottom: 20px;
+          color: $blue_700;
+          border-bottom: 2px solid #0066cc;
+          padding-bottom: 10px;
+        }
+
+        .brands-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+
+          .brand-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            height: 70px;
+            transition: all 0.3s ease;
+
+            &:hover {
+              border-color: #0066cc;
+              background: #fff;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+              transform: translateY(-2px);
+            }
+
+            img {
+              max-width: 100%;
+              max-height: 45px;
+              object-fit: contain;
+              filter: grayscale(80%);
+              transition: filter 0.3s;
+            }
+
+            &:hover img {
+              filter: grayscale(0%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // RTL adjustments
+  [dir="rtl"] {
+    .header-navigation > ul > li {
+      &:not(:last-child) {
+        border-left: none;
+        border-right: 1px solid $gray_100;
+      }
+
+      &.first .submenu-wrapper {
+        left: 0;
+        right: auto;
+      }
+    }
+
+    .submenu-column.categories .menu_level_2 {
+      padding-right: 0;
+      padding-left: 15px;
     }
   }
 

@@ -4,18 +4,12 @@
     </header>
 {% endblock %}
 
+
 {% block _gwd_header_top_widget %}
     <div {{ block('block_attributes') }}>
             {{ block_widget(block) }}
     </div>
 {% endblock %}
-
-{% block _gwd_header_inner_widget %}
-    <div {{ block('block_attributes') }}>
-            {{ block_widget(block) }}
-    </div>
-{% endblock %}
-
 
 {% block _gwd_header_logo_widget %}
     <a href="/" class="logo-link">
@@ -26,13 +20,69 @@
 
 
 
-{% block _header_main_menu_widget %}
-    <nav class="header-navigation" {{ block('block_attributes') }}>
-        {{ oro_menu_render('commerce_top_nav') }}
-    </nav>
+{% block _gwd_header_inner_widget %}
+    <div {{ block('block_attributes') }}>
+            {{ block_widget(block) }}
+    </div>
 {% endblock %}
 
+{% block _header_main_menu_widget %}
+    <nav class="header-navigation"{{ block('block_attributes') }}>
+        {% set menu = oro_menu_get('commerce_top_nav') %}
+        <ul>
+            {% for item in menu.children %}
+                {% if item.displayed %}
+                    <li class="{{ loop.first ? 'first' : '' }} {{ loop.last ? 'last' : '' }} {{ item.children|length > 0 ? 'has-dropdown' : '' }}">
+                    <a href="{{ item.uri }}">{{ item.label }}</a>
 
+                    {% if item.children|length > 0 %}
+                        <div class="submenu-wrapper">
+                            {# Categories column #}
+                            <div class="submenu-column categories">
+                                <ul class="menu_level_1">
+                                    {% for child in item.children %}
+                                        <li>
+                                            <a href="{{ child.uri }}">{{ child.label }}</a>
+                                            {% if child.children|length > 0 %}
+                                                <ul class="menu_level_2">
+                                                    {% for grandchild in child.children %}
+                                                        <li><a href="{{ grandchild.uri }}">{{ grandchild.label }}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            {# Brands column - only for first menu item #}
+                            {% if loop.first %}
+                                <div class="submenu-column brands">
+                                    <h4>מותגים</h4>
+                                    <div class="brands-grid">
+                                        <a href="/brand/lg" class="brand-item">
+                                            <img src="{{ asset('bundles/gwdtheme/images/brands/lg.png') }}" alt="LG">
+                                        </a>
+                                        <a href="/brand/samsung" class="brand-item">
+                                            <img src="{{ asset('bundles/gwdtheme/images/brands/samsung.png') }}" alt="Samsung">
+                                        </a>
+                                        <a href="/brand/hisense" class="brand-item">
+                                            <img src="{{ asset('bundles/gwdtheme/images/brands/hisense.png') }}" alt="Hisense">
+                                        </a>
+                                        <a href="/brand/nokia" class="brand-item">
+                                            <img src="{{ asset('bundles/gwdtheme/images/brands/nokia.png') }}" alt="Nokia">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
 {% block _top_sign_in_link_widget %}
     {% import '@OroUI/layouts/renderIcon.html.twig' as renderIcon %}
     {% set attr = layout_attr_defaults(attr, {
