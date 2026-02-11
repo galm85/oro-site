@@ -4,3 +4,11 @@ oro:
     search_label: 'חיפוש'
     search_submit_btn: 'חפש'
     search_submit_btn_reset: 'נקה'
+
+  customer:
+    customeruser:
+      profile:
+        login: 'כניסה'
+        signup: 'יצירת חשבון'
+
+

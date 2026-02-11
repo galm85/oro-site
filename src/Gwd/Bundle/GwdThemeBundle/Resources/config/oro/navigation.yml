@@ -1,0 +1,28 @@
+navigation:
+  menu_config:
+    items:
+      gwd_products:
+        label: 'Products'
+        uri: '#'
+
+      gwd_about_us:
+        label: 'About Us'
+        uri: '/about-us'
+
+      gwd_link3:
+        label: 'Link 3'
+        uri: '#'
+
+      gwd_link4:
+        label: 'Link 4'
+        uri: '#'
+
+    tree:
+      gwd_storefront_menu:
+        type: frontend_menu
+        scope_type: default
+        children:
+          gwd_products: ~
+          gwd_about_us: ~
+          gwd_link3: ~
+          gwd_link4: ~
