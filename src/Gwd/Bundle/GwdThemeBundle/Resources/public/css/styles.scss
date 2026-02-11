@@ -1,7 +1,8 @@
 
 @import "./base/variables";
+@import "./base/fonts";
 @import "./base/general";
-@import "header";
-@import "footer";
+@import "./components/header";
+@import "./components/footer";
 
 @import "./cms/about_us_tabs_block";
