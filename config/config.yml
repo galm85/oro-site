@@ -93,6 +93,8 @@ framework:
 twig:
     debug:                    "%kernel.debug%"
     strict_variables:         "%kernel.debug%"
+    paths:
+        '%kernel.project_dir%/src/Gwd/Bundle/CmsBundle/Resources/views': GwdCms
     globals:
         bap:
             layout:           base.html.twig  # default layout across all Oro bundles

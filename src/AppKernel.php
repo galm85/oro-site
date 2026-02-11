@@ -9,6 +9,7 @@ use Oro\Bundle\DistributionBundle\OroKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Gwd\Bundle\GwdThemeBundle\GwdThemeBundle;
+use Gwd\Bundle\CmsBundle\CmsBundle;
 
 class AppKernel extends OroKernel
 {
@@ -18,6 +19,7 @@ class AppKernel extends OroKernel
         $bundles = array(
             // bundles
             new GwdThemeBundle(),
+            new CmsBundle(),
         );
 
         if ($this->isDebug()) {

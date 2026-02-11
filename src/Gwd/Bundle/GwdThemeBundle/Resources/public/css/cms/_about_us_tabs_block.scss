@@ -1,0 +1,20 @@
+
+  .gwd-tabs-block{
+    width: 100%;
+
+
+
+    .gwd-tabs-nav{
+      display: flex;
+      justify-content: space-evenly;
+
+      .gwd-tab-button{
+        background: none;
+        flex:1;
+        text-align: center;
+      }
+    }
+  }
+
+
+
