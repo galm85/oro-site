@@ -1,0 +1,77 @@
+layout:
+  actions:
+    - '@setBlockTheme':
+        themes: 'header.html.twig'
+
+    - '@remove':
+        id: navigation_bar
+
+    - '@remove':
+        id: page_header
+
+### Main Header Element
+    - '@add':
+        id: gwd_header_wrapper
+        parentId: page_container
+        blockType: container
+        prepend: true
+        options:
+          attr:
+            class: gwd-header-wrapper
+
+## Top header Row
+    - '@add':
+        id: gwd_header_top
+        parentId: gwd_header_wrapper
+        blockType: container
+        options:
+          attr:
+            class: gwd-header-top
+
+    # header Logo
+    - '@add':
+        id: gwd_header_logo
+        parentId: gwd_header_top
+        blockType: block
+
+    # search bar
+    - '@move':
+        id: middle_bar_search
+        parentId: gwd_header_top
+
+    - '@setOption':
+        id: middle_bar_search
+        optionName: attr.class
+        optionValue: gwd-search-bar
+
+
+
+
+# Second header row
+    - '@add':
+        id: gwd_header_inner
+        parentId: gwd_header_wrapper
+        blockType: container
+        options:
+          attr:
+            class: gwd-header-inner container-fluid
+
+    # menu
+    - '@add':
+        id: header_main_menu
+        parentId: gwd_header_inner
+        blockType: block
+        options:
+          attr:
+            class: header-main-menu
+
+
+    # Login menu
+    - '@move':
+        id: top_authorization_container
+        parentId: gwd_header_inner
+
+    - '@setOption':
+        id: top_authorization_container
+        optionName: attr.class
+        optionValue: gwd-login-container

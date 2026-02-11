@@ -1,0 +1,47 @@
+{% block  _gwd_footer_wrapper_widget %}
+    <div {{ block('block_attributes') }}>
+            {{ block_widget(block) }}
+    </div>
+{%  endblock %}
+
+
+{% block _gwd_footer_nav_widget %}
+    <nav {{ block('block_attributes') }}>
+
+        {{ oro_menu_render('oro_customer_dashboard_quick_access_menu') }}
+
+    </nav>
+{% endblock %}
+
+
+
+{% block  _gwd_footer_logo_widget %}
+    <div {{ block('block_attributes') }}>
+        <a href="/" class="footer-logo-link">
+            <img src="{{ asset('bundles/gwdtheme/images/footer/footer-logo.webp') }}" alt="HY logo" class="footer-logo-image">
+        </a>
+    </div>
+{%  endblock %}
+
+
+{% block  _gwd_footer_sec_nav_widget %}
+    <nav {{ block('block_attributes') }}>
+        {{ oro_menu_render('commerce_top_nav') }}
+    </nav>
+{%  endblock %}
+
+
+{% block  _gwd_footer_icons_widget %}
+    <div {{ block('block_attributes') }}>
+        <img src="{{ asset('bundles/gwdtheme/images/footer/image-st-1.webp.png') }}" alt="GWD Store" >
+        <img src="{{ asset('bundles/gwdtheme/images/footer/image-st-2.webp') }}" alt="GWD Store" >
+        <img src="{{ asset('bundles/gwdtheme/images/footer/image-st-3.webp') }}" alt="GWD Store" >
+    </div>
+{%  endblock %}
+
+{% block  _gwd_footer_copyrights_widget %}
+    <div {{ block('block_attributes') }}>
+        <p>© (6683*) כל הזכויות שמורות לקבוצת ח.י. , התע"ש 14 א.ת כפר סבא</p>
+        <p>נבנה ע"י Elad Commerce</p>
+    </div>
+{%  endblock %}

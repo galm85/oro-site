@@ -5,4 +5,4 @@ groups: [ commerce ]
 logo: bundles/gwdtheme/images/logo.png
 icon: bundles/gwdtheme/images/favicon.ico
 screenshot: bundles/gwdtheme/images/screenshot.png
-rtl_support: false
+rtl_support: true

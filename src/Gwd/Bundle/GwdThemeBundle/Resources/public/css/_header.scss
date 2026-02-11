@@ -1,0 +1,187 @@
+// GWD Custom Header Styles
+
+.gwd-header-wrapper {
+  background: #ffffff;
+  border-bottom: 2px solid #e0e0e0;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.gwd-header-top{
+  height: 90px;
+  background-color: $dark_blue;
+  padding-inline: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+    .header-logo-image{
+      width: 173px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .gwd-search-bar{
+      position: relative;
+      width: fit-content;
+
+      .search-widget__input{
+        width: 358px;
+        border-color: #68d7ef;
+        color: #c2cddc;
+        height: 38px;
+        font-size: 16px;
+        background: transparent;
+        border-radius: 33px;
+      }
+    }
+
+
+}
+
+
+
+.gwd-header-inner {
+  padding: 0 20px;
+  background-color: $white;
+  padding-inline: 40px;
+  color: $text_blue;
+  .gwd-login-container{
+    a {
+      span {
+        color: $text_blue;
+      }
+      svg{
+        fill: $text_blue;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 0;
+  gap: 40px;
+}
+
+
+
+.header-navigation {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+
+  // Target the OroCommerce menu structure
+  > ul,
+  .menu {
+    display: flex !important;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 5px;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    > li {
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+
+      > a {
+        color: #333333;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 10px 15px;
+        display: block;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+          color: #0066cc;
+          background: #f5f5f5;
+          border-radius: 4px;
+        }
+      }
+
+      // Dropdown submenu styles
+      > ul {
+        position: absolute;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        min-width: 200px;
+        flex-direction: column;
+        padding: 10px 0;
+        border-radius: 4px;
+        z-index: 1001;
+
+        li {
+          a {
+            padding: 12px 20px;
+            display: block;
+
+            &:hover {
+              background: #f5f5f5;
+            }
+          }
+        }
+      }
+
+      &:hover > ul {
+        display: flex;
+      }
+    }
+  }
+}
+
+
+// Responsive design
+@media (max-width: 1200px) {
+  .header-content {
+    gap: 20px;
+  }
+
+  .header-navigation {
+    > ul,
+    .menu {
+      gap: 2px;
+      font-size: 14px;
+
+      > li > a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .header-navigation {
+    width: 100%;
+
+    > ul,
+    .menu {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+layout:
+  actions: []
+  imports:
+    -
+      id: header
+
+    -
+      id: footer

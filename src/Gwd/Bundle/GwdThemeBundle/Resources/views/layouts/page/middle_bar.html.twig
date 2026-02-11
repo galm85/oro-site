@@ -1,0 +1,25 @@
+{% block _middle_bar_search_widget %}
+    <div{{ block('block_attributes') }}>
+        <form id="oro_website_search_search"
+              action="{{ path('oro_product_frontend_product_search') }}"
+              method="get"
+              class="gwd-custom-search-form"
+              role="search">
+
+            <div class="gwd-search-container">
+                <input class="gwd-search-input"
+                       type="text"
+                       name="search"
+                       placeholder="חפש מוצרים..."
+                       aria-label="Search"
+                       maxlength="255">
+
+                <button type="submit" class="gwd-search-button" aria-label="Search">
+                    <svg class="search-icon">
+                        <use href="/build/gwd_theme/svg-icons/theme-icons.svg#search"></use>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
