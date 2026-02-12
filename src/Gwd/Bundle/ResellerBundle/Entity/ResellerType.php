@@ -15,7 +15,8 @@ use Oro\Bundle\AttachmentBundle\Entity\File;
  * Reseller Entity
  */
 #[ORM\Entity]
-#[ORM\Table(name:'gwd_reseller')]
+#[ORM\Table(name: 'gwd_reseller')]
+#[ORM\HasLifecycleCallbacks]
 #[Config(
     routeName: 'gwd_reseller_index',
     routeView: 'gwd_reseller_view',
@@ -63,7 +64,7 @@ class ResellerType implements ExtendEntityInterface
     #[ORM\Column(name: 'status', type: Types::STRING, length: 20)]
     protected string $status = 'active';
 
-    #[ORM\ManyToOne(targetEntity: File::class)]
+    #[ORM\ManyToOne(targetEntity: File::class,cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'logo_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[ConfigField(defaultValues: ['attachment' => ['acl_protected' => false]])]
     protected ?File $logo = null;
@@ -210,7 +211,20 @@ class ResellerType implements ExtendEntityInterface
     }
 
 
+    #[ORM\PrePersist]
+    public function prePersist(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTime('now', new \DateTimeZone('UTC'));
+        }
+        $this->updatedAt = new \DateTime('now', new \DateTimeZone('UTC'));
+    }
 
+    #[ORM\PreUpdate]
+    public function preUpdate(): void
+    {
+        $this->updatedAt = new \DateTime('now', new \DateTimeZone('UTC'));
+    }
 
 
 

@@ -55,7 +55,13 @@
                 {{ UI.renderProperty('gwd.reseller.status.label'|trans, entity.status|capitalize) }}
 
                 {% if entity.logo %}
-                    {{ UI.renderHtmlProperty('gwd.reseller.logo.label'|trans, UI.renderImageContent(entity.logo)) }}
+                    {% set logoHtml %}
+                        {% set sources = oro_filtered_picture_sources(entity.logo, 'product_small') %}
+                        {% if sources is not empty %}
+                            <img src="{{ sources|first }}" alt="{{ entity.name }}" style="max-width: 200px;">
+                        {% endif %}
+                    {% endset %}
+                    {{ UI.renderHtmlProperty('Logo', logoHtml) }}
                 {% endif %}
 
                 {{ UI.renderProperty('oro.ui.created_at'|trans, entity.createdAt|oro_format_datetime) }}
