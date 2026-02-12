@@ -1,0 +1,5 @@
+oro_entity:
+  entity_aliases:
+    Gwd\Bundle\ResellerBundle\Entity\ResellerType:
+      alias: reseller
+      plural_alias: resellers

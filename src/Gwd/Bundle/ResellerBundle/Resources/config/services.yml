@@ -1,0 +1,29 @@
+services:
+  gwd_reseller.importexport.data_converter.reseller_type:
+    parent: oro_importexport.data_converter.configurable
+
+  gwd_reseller.importexport.strategy.reseller_type.add_or_replace:
+    parent: oro_importexport.strategy.configurable_add_or_replace
+
+  gwd_reseller.importexport.processor.export.reseller_type:
+    parent: oro_importexport.processor.export_abstract
+    calls:
+      - [setDataConverter, ['@gwd_reseller.importexport.data_converter.reseller_type']]
+    tags:
+      - {name: oro_importexport.processor, type: export, entity: 'Gwd\Bundle\ResellerBundle\Entity\ResellerType', alias: gwd_reseller_type}
+
+  gwd_reseller.importexport.processor.import.reseller_type:
+    parent: oro_importexport.processor.import_abstract
+    calls:
+      - [setDataConverter, ['@gwd_reseller.importexport.data_converter.reseller_type']]
+      - [setStrategy, ['@gwd_reseller.importexport.strategy.reseller_type.add_or_replace']]
+    tags:
+      - {name: oro_importexport.processor, type: import, entity: 'Gwd\Bundle\ResellerBundle\Entity\ResellerType', alias: gwd_reseller_type}
+      - {name: oro_importexport.processor, type: import_validation, entity: 'Gwd\Bundle\ResellerBundle\Entity\ResellerType', alias: gwd_reseller_type}
+
+  gwd_reseller.importexport.processor.export_template.reseller_type:
+    parent: oro_importexport.processor.export_abstract
+    calls:
+      - [setDataConverter, ['@gwd_reseller.importexport.data_converter.reseller_type']]
+    tags:
+      - {name: oro_importexport.processor, type: export_template, entity: 'Gwd\Bundle\ResellerBundle\Entity\ResellerType', alias: gwd_reseller_type}

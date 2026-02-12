@@ -1,0 +1,4 @@
+gwd_reseller_type:
+  resource: "@ResellerBundle/Controller/ResellerController.php"
+  type: annotation
+  prefix: /resellers
