@@ -1,0 +1,51 @@
+
+.resellers-page{
+  font-family: $main_font;
+  .page-main__content{
+    padding: 0;
+    margin: 0;
+
+    .page-content{
+      padding-top: 0;
+    }
+  }
+
+  &__wrapper{
+    padding-inline: 60px;
+  }
+
+  &__list{
+    margin-block: 30px;
+    width: 600px;
+    .list-title{
+      color: $text_blue;
+      font-size: 28px;
+    }
+
+    .no-found{
+      color: $red;
+      font-style: italic;
+      font-size: 20px;
+    }
+
+  }
+
+
+  &__card{
+    display: flex;
+    align-items: center;
+    height: 120px;
+    border-bottom: 1px solid $gray_100;
+    .reseller-logo{
+      margin-inline-end: 10px;
+    }
+    .reseller-data{
+      flex: 1;
+    }
+    .reseller-actions{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}

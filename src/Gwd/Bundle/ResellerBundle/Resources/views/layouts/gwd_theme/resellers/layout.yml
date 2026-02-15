@@ -1,0 +1,35 @@
+layout:
+  actions:
+    - '@setOption':
+        id: page_main
+        optionName: attr.class
+        optionValue: 'resellers-page'
+
+    - '@addTree':
+        items:
+
+          resellers_page_wrapper:
+            blockType: container
+
+          resellers_hero:
+            blockType: content_block
+            options:
+              alias: 'home-page-slider'
+
+          resellers_content:
+            blockType: container
+            options:
+              vars:
+                resellers: '=data["resellers_provider"].getResellers()'
+
+
+        tree:
+          page_content:
+            resellers_hero: ~
+            resellers_page_wrapper:
+              resellers_content: ~
+
+    - '@setBlockTheme':
+        themes:
+          - '@Reseller/layouts/gwd_theme/resellers/resellers-wrapper.html.twig'
+          - '@Reseller/layouts/gwd_theme/resellers/resellers-list.html.twig'

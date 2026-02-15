@@ -2,3 +2,10 @@ gwd_reseller_type:
   resource: "@ResellerBundle/Controller/ResellerController.php"
   type: annotation
   prefix: /resellers
+
+gwd_reseller_frontend:
+  resource: "@ResellerBundle/Controller/Frontend/ResellerController.php"
+  type: attribute
+  prefix: /
+  options:
+    frontend: true

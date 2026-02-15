@@ -1,0 +1,4 @@
+gwd_reseller_frontend:
+  resource: "@ResellerBundle/Controller/Frontend"
+  type: attribute
+  prefix: /

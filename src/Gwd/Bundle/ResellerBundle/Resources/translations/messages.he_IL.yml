@@ -1,5 +1,8 @@
 gwd:
   reseller:
+    list:
+      no_found: 'לא נמצאו משווקים'
+      title: 'רשימת חנויות'
     resellertype:
       entity_label: Reseller
       entity_plural_label: Resellers
@@ -20,3 +23,4 @@ gwd:
 
       menu:
         reseller_Ílist.label: Resellers
+

@@ -12,3 +12,7 @@ services:
   Gwd\Bundle\ResellerBundle\Form\Type\:
     resource: '../../Form/Type/*'
     tags: ['form.type']
+
+  Gwd\Bundle\ResellerBundle\Layout\DataProvider\ResellersProvider:
+    tags:
+      - { name: layout.data_provider, alias: resellers_provider }
