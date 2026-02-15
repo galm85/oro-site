@@ -10,26 +10,38 @@ layout:
 
           resellers_page_wrapper:
             blockType: container
+            options:
+              attr:
+                class: 'resellers-page__wrapper'
 
           resellers_hero:
             blockType: content_block
             options:
               alias: 'home-page-slider'
 
-          resellers_content:
+          resellers_list:
             blockType: container
             options:
+              attr:
+                class: 'resellers-page__list'
               vars:
                 resellers: '=data["resellers_provider"].getResellers()'
 
+          resellers_search:
+            blockType: container
+            options:
+              attr:
+                class: 'resellers-page__search'
 
         tree:
           page_content:
             resellers_hero: ~
             resellers_page_wrapper:
-              resellers_content: ~
+              resellers_search: ~
+              resellers_list: ~
 
     - '@setBlockTheme':
         themes:
-          - '@Reseller/layouts/gwd_theme/resellers/resellers-wrapper.html.twig'
-          - '@Reseller/layouts/gwd_theme/resellers/resellers-list.html.twig'
+          - '@Reseller/layouts/gwd_theme/resellers/wrapper.html.twig'
+          - '@Reseller/layouts/gwd_theme/resellers/list.html.twig'
+          - '@Reseller/layouts/gwd_theme/resellers/search.html.twig'
