@@ -1,0 +1,321 @@
+// GWD Custom Header Styles
+
+.gwd-header-wrapper {
+  background: #ffffff;
+  border-bottom: 2px solid #e0e0e0;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.gwd-header-top{
+  height: 90px;
+  background-color: $dark_blue;
+  padding-inline: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+    .header-logo-image{
+      width: 173px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .gwd-search-bar{
+      position: relative;
+      width: fit-content;
+
+      .search-widget__input{
+        width: 358px;
+        border-color: #68d7ef;
+        color: #c2cddc;
+        height: 38px;
+        font-size: 16px;
+        background: transparent;
+        border-radius: 33px;
+        font-family: $main_font;
+
+      }
+    }
+
+
+}
+
+
+.gwd-header-inner {
+  background-color: $white;
+  padding: 20px 40px;
+  color: $text_blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+
+  .header-navigation {
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+
+    // Target the OroCommerce menu structure
+    > ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 5px;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      > li {
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        padding-inline: 20px;
+        height: 25px;
+        position: relative; // Added for dropdown positioning
+
+        &:not(:last-child) {
+          border-left: 1px solid $gray_100;
+        }
+
+        > a {
+          color: $blue_700;
+          text-decoration: none;
+          font-size: 18px;
+          font-weight: 700;
+          display: block;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          font-family: $main_font;
+
+          &:hover {
+            background: $background_light;
+            border-radius: 4px;
+          }
+        }
+
+        // Regular dropdown submenu (for non-first items)
+        > ul:not(.menu_level_1) {
+          position: absolute;
+          background: #ffffff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          display: none;
+          min-width: 200px;
+          flex-direction: column;
+          padding: 10px 0;
+          border-radius: 4px;
+          z-index: 1001;
+
+          li {
+            a {
+              padding: 12px 20px;
+              display: block;
+
+              &:hover {
+                background: #f5f5f5;
+              }
+            }
+          }
+        }
+
+        // NEW: Mega menu dropdown (only for first item)
+        &.first {
+          .submenu-wrapper {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1001;
+            padding: 30px;
+            min-width: 700px;
+            margin-top: 10px;
+          }
+
+          &:hover .submenu-wrapper {
+            display: flex;
+            gap: 40px;
+          }
+        }
+
+        // Show regular dropdown on hover
+        &:hover > ul:not(.menu_level_1) {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  // Mega menu columns
+  .submenu-wrapper {
+    flex-direction: row-reverse;
+
+    .submenu-column {
+      flex: 1;
+      &.categories {
+        .menu_level_1 {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          > li {
+            margin-bottom: 12px;
+
+            > a {
+              color: $blue_700;
+              text-decoration: none;
+              font-size: 16px;
+              font-weight: 600;
+              font-family: $main_font;
+              display: block;
+              padding: 5px 0;
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: #0066cc;
+              }
+            }
+
+            .menu_level_2 {
+              list-style: none;
+              margin: 8px 0 0 0;
+              padding-right: 15px;
+
+              li {
+                margin-bottom: 6px;
+
+                a {
+                  color: #666;
+                  font-size: 14px;
+                  font-weight: 400;
+                  font-family: $main_font;
+                  padding: 3px 0;
+                  display: block;
+                  transition: color 0.3s ease;
+
+                  &:hover {
+                    color: #0066cc;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.brands {
+        h4 {
+          font-size: 18px;
+          font-weight: 700;
+          font-family: $main_font;
+          margin-bottom: 20px;
+          color: $blue_700;
+          border-bottom: 2px solid #0066cc;
+          padding-bottom: 10px;
+        }
+
+        .brands-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+
+          .brand-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            height: 70px;
+            transition: all 0.3s ease;
+
+            &:hover {
+              border-color: #0066cc;
+              background: #fff;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+              transform: translateY(-2px);
+            }
+
+            img {
+              max-width: 100%;
+              max-height: 45px;
+              object-fit: contain;
+              filter: grayscale(80%);
+              transition: filter 0.3s;
+            }
+
+            &:hover img {
+              filter: grayscale(0%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // RTL adjustments
+  [dir="rtl"] {
+    .header-navigation > ul > li {
+      &:not(:last-child) {
+        border-left: none;
+        border-right: 1px solid $gray_100;
+      }
+
+      &.first .submenu-wrapper {
+        left: 0;
+        right: auto;
+      }
+    }
+
+    .submenu-column.categories .menu_level_2 {
+      padding-right: 0;
+      padding-left: 15px;
+    }
+  }
+
+  .gwd-login-container{
+    gap: 0;
+    display: flex;
+    align-items: center;
+    a {
+      padding: 0;
+      display: inline-block;
+      line-height: 44px;
+      span {
+        color: $text_blue;
+        font-weight: 400;
+        font-size: 16px;
+        font-family: $main_font;
+      }
+      svg{
+        fill: $text_blue;
+      }
+    }
+
+    .separator{
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    .login-icon{
+      svg{
+        width: 30px;
+        margin-inline-end: 10px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+

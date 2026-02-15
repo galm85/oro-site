@@ -1,0 +1,21 @@
+{% extends '@OroUI/actions/index.html.twig' %}
+
+{% set gridName = 'gwd-reseller-grid' %}
+{% set pageTitle = 'Resellers' %}
+
+{% block navButtons %}
+    {% import '@OroUI/macros.html.twig' as UI %}
+
+    {% if is_granted('CREATE', 'Entity:Gwd\\Bundle\\ResellerBundle\\Entity\\ResellerType') %}
+        <div class="btn-group">
+            {{ UI.addButton({
+                'path': path('gwd_reseller_create'),
+                'entity_label': 'Reseller'
+            }) }}
+        </div>
+    {% endif %}
+
+    {% include '@OroImportExport/ImportExport/buttons_from_configuration.html.twig' with {
+        'alias': 'gwd_reseller_type'
+    } %}
+{% endblock %}

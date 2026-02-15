@@ -1,0 +1,49 @@
+datagrids:
+
+  gwd-reseller-grid:
+    source:
+      type: orm
+      query:
+        select:
+          - reseller.id
+          - reseller.name
+          - reseller.email
+          - reseller.phone
+          - reseller.authorized
+          - reseller.status
+          - reseller.createdAt
+        from:
+          - { table: Gwd\Bundle\ResellerBundle\Entity\ResellerType, alias: reseller }
+    columns:
+      name:
+        label: Name
+      email:
+        label: Email
+      phone:
+        label: Phone
+      authorized:
+        label: Authorized
+        frontend_type: boolean
+      status:
+        label: Status
+      createdAt:
+        label: oro.ui.created_at
+        frontend_type: datetime
+
+
+    properties:
+      id: ~
+      view_link:
+        type: url
+        route: gwd_reseller_view
+        params:
+          - id
+
+    actions:
+      view:
+        type: navigate
+        label: oro.grid.action.view
+        link: view_link
+        icon: eye
+        rowAction: true
+

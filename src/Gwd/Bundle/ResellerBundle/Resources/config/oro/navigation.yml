@@ -1,0 +1,18 @@
+navigation:
+  menu_config:
+    items:
+      gwd_reseller_type_list:
+        label: Resellers
+        route: gwd_reseller_index
+        extras:
+          routes: ['gwd_reseller_*']
+          position: 30
+
+    tree:
+      application_menu:
+        children:
+          system_tab:
+            children:
+              users_management:
+                children:
+                  gwd_reseller_type_list: ~

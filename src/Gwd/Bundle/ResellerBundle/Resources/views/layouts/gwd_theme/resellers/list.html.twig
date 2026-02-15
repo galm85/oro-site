@@ -1,0 +1,55 @@
+        {% block _resellers_list_widget %}
+
+        {% set resellers = resellers|default([]) %}
+
+        <div {{ block('block_attributes') }}>
+            {% if resellers is empty %}
+                <p class="no-found">{{ 'gwd.reseller.list.no_found'|trans|default('No Found')}}</p>
+            {% else %}
+
+                    <h3 class="list-title">{{ 'gwd.reseller.list.title'|trans }}</h3>
+                    {% for reseller in resellers %}
+                        <div class="resellers-page__card">
+                            {% if reseller.logo %}
+                                <div class="reseller-logo">
+                                    <img src="{{ filtered_image_url(reseller.logo, 'product_small') }}" alt="{{ reseller.name }}" />
+                                </div>
+                            {% endif %}
+
+                            <div class="reseller-data">
+                                <h3>{{ reseller.name }}
+
+                                    {% if reseller.authorized %}
+                                        <span class="badge-success">✓</span>
+                                    {% endif %}
+                                </h3>
+
+
+                                {% if reseller.address %}
+                                    <p>{{ reseller.address }}</p>
+                                {% endif %}
+
+
+                                {% if reseller.email %}
+                                    <p><a href="mailto:{{ reseller.email }}">{{ reseller.email }}</a></p>
+                                {% endif %}
+
+
+                            </div>
+
+                            <div class="reseller-actions">
+                                {% if reseller.phone %}
+                                    <p><a href="tel:{{ reseller.phone }}" class="btn">{{ reseller.phone }}</a></p>
+                                {% endif %}
+                                {% if reseller.website %}
+                                    <p><a href="{{ reseller.website }}" target="_blank" class="btn">Visit Website</a></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+            {% endif %}
+        </div>
+        {% endblock %}
+
+

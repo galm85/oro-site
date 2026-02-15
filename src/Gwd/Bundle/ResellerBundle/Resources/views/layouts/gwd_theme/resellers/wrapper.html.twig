@@ -1,0 +1,11 @@
+{% block _resellers_page_wrapper_widget %}
+    <section {{ block('block_attributes') }}>
+
+         {{ block_widget(block.children.resellers_search) }}
+
+        <div class="list-wrapper">
+            {{ block_widget(block.children.resellers_list) }}
+        </div>
+
+    </section>
+{% endblock %}

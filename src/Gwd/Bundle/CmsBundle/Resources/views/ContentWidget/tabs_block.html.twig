@@ -1,0 +1,53 @@
+{% set tabs = [] %}
+{% for i in 1..4 %}
+    {% set titleKey = 'tab' ~ i ~ '_title' %}
+    {% set contentKey = 'tab' ~ i ~ '_content' %}
+    {% if attribute(_context, titleKey) is defined and attribute(_context, titleKey) %}
+        {% set tabs = tabs|merge([{
+            'title': attribute(_context, titleKey),
+            'content': attribute(_context, contentKey) ?? ''
+        }]) %}
+    {% endif %}
+{% endfor %}
+
+<div class="gwd-tabs-block" data-tabs>
+    <div class="gwd-tabs-nav">
+        {% for key, tab in tabs %}
+            <button class="gwd-tab-button {% if loop.first %}active{% endif %}"
+                    data-tab-target="tab-{{ key }}">
+                {{ tab.title }}
+            </button>
+        {% endfor %}
+    </div>
+
+    <div class="gwd-tabs-content">
+        {% for key, tab in tabs %}
+            <div class="gwd-tab-pane {% if loop.first %}active{% endif %}"
+                 id="tab-{{ key }}">
+                {{ tab.content|raw }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabsContainer = document.querySelector('[data-tabs]');
+        if (!tabsContainer) return;
+
+        const buttons = tabsContainer.querySelectorAll('.gwd-tab-button');
+        const panes = tabsContainer.querySelectorAll('.gwd-tab-pane');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const target = this.getAttribute('data-tab-target');
+
+                buttons.forEach(btn => btn.classList.remove('active'));
+                panes.forEach(pane => pane.classList.remove('active'));
+
+                this.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+    });
+</script>

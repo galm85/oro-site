@@ -1,0 +1,7 @@
+services:
+  gwd_cms.content_widget.tabs_block:
+    class: Gwd\Bundle\CmsBundle\ContentWidget\TabsBlockWidget
+    arguments:
+      - '@doctrine'
+    tags:
+      - { name: oro_cms.content_widget.type }

@@ -1,0 +1,46 @@
+
+  .gwd-tabs-block{
+    width: 100%;
+    font-family: $main_font;
+
+    .gwd-tabs-nav{
+      display: flex;
+      justify-content: space-evenly;
+      border-bottom: 1px solid $gray_100;
+
+      .gwd-tab-button{
+        background: none;
+        flex:1;
+        text-align: center;
+        color: $text_blue;
+        height: 76px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 76px;
+        border:none;
+        cursor: pointer;
+
+        &.active{
+          color: $cyan_400;
+          border-bottom: 2px solid $cyan_400;
+          font-weight: 600;
+        }
+      }
+    }
+
+
+    .gwd-tabs-content{
+      padding-top: 50px;
+
+      .gwd-tab-pane{
+        display: none;
+
+        &.active{
+          display: block;
+        }
+      }
+    }
+  }
+
+
+

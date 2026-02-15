@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Gwd\Bundle\ResellerBundle\Controller\:
+    resource: '../../Controller/*'
+    public: true
+    tags: ['controller.service_arguments']
+
+  Gwd\Bundle\ResellerBundle\Form\Type\:
+    resource: '../../Form/Type/*'
+    tags: ['form.type']
+
+  Gwd\Bundle\ResellerBundle\Layout\DataProvider\ResellersProvider:
+    tags:
+      - { name: layout.data_provider, alias: resellers_provider }

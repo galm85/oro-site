@@ -1,0 +1,70 @@
+{% extends '@OroUI/actions/update.html.twig' %}
+
+{% form_theme form with '@OroForm/Form/fields.html.twig' %}
+
+{% set formAction = form.vars.value.id ? path('gwd_reseller_update', { 'id': form.vars.value.id }) : path('gwd_reseller_create') %}
+
+{% block navButtons %}
+    {% import '@OroUI/macros.html.twig' as UI %}
+
+    {{ UI.cancelButton(path('gwd_reseller_index')) }}
+
+    {% set html = UI.saveAndCloseButton({
+        'route': 'gwd_reseller_view',
+        'params': {'id': '$id'}
+    }) %}
+
+    {% if form.vars.value.id or is_granted('gwd_reseller_update') %}
+        {% set html = html ~ UI.saveAndStayButton({
+            'route': 'gwd_reseller_update',
+            'params': {'id': '$id'}
+        }) %}
+    {% endif %}
+
+    {{ UI.dropdownSaveButton({'html': html}) }}
+{% endblock %}
+
+{% block pageHeader %}
+    {% if form.vars.value.id %}
+        {% set breadcrumbs = {
+            'entity': form.vars.value,
+            'indexPath': path('gwd_reseller_index'),
+            'indexLabel': 'Resellers',
+            'entityTitle': form.vars.value.name
+        } %}
+        {{ parent() }}
+    {% else %}
+        {% set title = 'Create Reseller' %}
+        {% include '@OroUI/page_title_block.html.twig' with { title: title } %}
+    {% endif %}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% set id = 'reseller-edit' %}
+
+    {% set dataBlocks = [{
+        'title': 'General Information',
+        'class': 'active',
+        'subblocks': [{
+            'title': '',
+            'data': [
+                form_row(form.name),
+                form_row(form.email),
+                form_row(form.phone),
+                form_row(form.website),
+                form_row(form.address),
+                form_row(form.description),
+                form_row(form.authorized),
+                form_row(form.status),
+                form_row(form.logo)
+            ]
+        }]
+    }] %}
+
+    {% set data = {
+        'formErrors': form_errors(form) ? form_errors(form) : null,
+        'dataBlocks': dataBlocks
+    } %}
+
+    {{ parent() }}
+{% endblock content_data %}

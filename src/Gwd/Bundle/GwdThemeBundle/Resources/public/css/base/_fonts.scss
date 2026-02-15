@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'assistant';
+  src: url('../../fonts/assistant/Assistant-ExtraBold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+
+
+
+$main_font: 'assistant', sans-serif;
