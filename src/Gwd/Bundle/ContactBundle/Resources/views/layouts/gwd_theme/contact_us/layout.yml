@@ -1,0 +1,41 @@
+layout:
+  actions:
+    - '@setBlockTheme':
+        themes: '@Contact/layouts/gwd_theme/contact_us/contact.html.twig'
+
+    - '@setOption':
+        id: page_main
+        optionName: attr.class
+        optionValue: 'contact-us-page'
+
+    - '@addTree':
+        items:
+
+          contact_us_wrapper:
+            blockType: container
+            options:
+              attr:
+                class: 'contact-us__wrapper'
+
+          contact_us_title:
+            blockType: block
+
+          contact_us_form:
+            blockType: block
+
+
+        tree:
+          page_content:
+            contact_us_wrapper:
+              contact_us_title: ~
+              contact_us_form: ~
+
+
+
+
+    - '@add':
+        id: contact_us_info
+        parentId: contact_us_wrapper
+        blockType: content_block
+        options:
+          alias: contact-information

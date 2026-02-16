@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Gwd\Bundle\GwdThemeBundle\GwdThemeBundle;
 use Gwd\Bundle\CmsBundle\CmsBundle;
 use Gwd\Bundle\ResellerBundle\ResellerBundle;
+use Gwd\Bundle\ContactBundle\ContactBundle;
 
 class AppKernel extends OroKernel
 {
@@ -24,6 +25,7 @@ class AppKernel extends OroKernel
             new GwdThemeBundle(),
             new CmsBundle(),
             new ResellerBundle(),
+            new ContactBundle()
         );
 
         if ($this->isDebug()) {

@@ -1,0 +1,10 @@
+gwd:
+  contact:
+    title: "בשיחה או בצ'אט, אנחנו כאן בשבילך"
+    first_name: 'שם פרטי'
+    last_name: 'שם משפחה'
+    phone: 'טלפון'
+    email: 'דואר אלקטרוני'
+    subject: 'נושא הפנייה'
+    message: 'הודעה'
+    submit: 'שליחה'

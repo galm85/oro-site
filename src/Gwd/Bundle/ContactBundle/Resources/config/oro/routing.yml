@@ -1,0 +1,6 @@
+gwd_contact_frontend:
+  resource: '@ContactBundle/Controller/Frontend/ContactController.php'
+  type: attribute
+  prefix: /
+  options:
+    frontend: true
