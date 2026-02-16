@@ -1,0 +1,8 @@
+#oro_config:
+#  gwd_config:
+#    contact_page_title:
+#      value: ''
+#      type: scalar
+#    site_email:
+#      value: ''
+#      type: scalar

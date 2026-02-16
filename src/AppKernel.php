@@ -14,6 +14,8 @@ use Gwd\Bundle\GwdThemeBundle\GwdThemeBundle;
 use Gwd\Bundle\CmsBundle\CmsBundle;
 use Gwd\Bundle\ResellerBundle\ResellerBundle;
 use Gwd\Bundle\ContactBundle\ContactBundle;
+use Gwd\Bundle\ConfigBundle\ConfigBundle;
+
 
 class AppKernel extends OroKernel
 {
@@ -25,7 +27,8 @@ class AppKernel extends OroKernel
             new GwdThemeBundle(),
             new CmsBundle(),
             new ResellerBundle(),
-            new ContactBundle()
+            new ContactBundle(),
+            new ConfigBundle(),
         );
 
         if ($this->isDebug()) {

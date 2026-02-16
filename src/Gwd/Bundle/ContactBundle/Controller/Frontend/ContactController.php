@@ -10,13 +10,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
-class ContactController extends AbstractController
-{
 
+use Oro\Bundle\ConfigBundle\Config\ConfigManager;
+
+
+class ContactController extends AbstractController
+
+{
+    private ConfigManager $configManager;
+
+    public function __construct(ConfigManager $configManager)
+    {
+        $this->configManager = $configManager;
+    }
 
     #[Route('/contact',name:'contact_us')]
     #[Layout]
-    public function indexAction(Request $request):array
+    public function indexAction(Request $request)
     {
         return [];
     }
@@ -31,9 +41,15 @@ class ContactController extends AbstractController
         $subject = $request->request->get('subject');
         $message = $request->request->get('message');
 
+        $siteEmail = $this->configManager->get('gwd_config.contact_page_to_email');
+        if (empty($siteEmail) || !filter_var($siteEmail, FILTER_VALIDATE_EMAIL)) {
+            $siteEmail = 'galm85@gmail.com'; // Fallback email
+        }
+
+
         $emailMessage = (new Email())
             ->from($email)
-            ->to('galm85@gmail.com')
+            ->to($siteEmail)
             ->subject('Contact Form' . $subject)
             ->html("
                             <h3>New Contact Form Submission</h3>

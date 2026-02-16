@@ -1,0 +1,78 @@
+system_configuration:
+  groups:
+
+    gwd_main:
+      title: 'GWD'
+      icon: 'fa-cogs'
+
+    gwd_general_dropdown:
+      title: 'General'
+    gwd_setting_link:
+      title: 'Settings'
+      icon: 'fa-cogs'
+    gwd_settings_settings:
+      title: 'Settings'
+      icon: 'fa-envelope'
+
+    gwd_pages_dropdown:
+      title: 'Pages'
+    gwd_contact_link:
+      title: 'Contact'
+      icon: 'fa-user'
+    gwd_contact_settings:
+      title: 'Contact'
+      icon: 'fa-envelope'
+
+  fields:
+    gwd_config.contact_page_title:
+      data_type: string
+      type: Symfony\Component\Form\Extension\Core\Type\TextType
+      priority: 100
+      options:
+        label: 'Contact Page Title'
+        required: false
+
+    gwd_config.contact_page_to_email:
+      data_type: string
+      type: Symfony\Component\Form\Extension\Core\Type\TextType
+      priority: 90
+      options:
+        label: 'Email To'
+        required: false
+
+    gwd_config.site_email:
+      data_type: string
+      type: Symfony\Component\Form\Extension\Core\Type\TextType
+      priority: 10
+      options:
+        label: 'Site Email'
+        required: false
+
+  tree:
+    system_configuration:
+      gwd_main:
+        children:
+          gwd_general_dropdown:
+            priority: 100
+            children:
+              gwd_setting_link:
+                priority: 60
+                children:
+                  gwd_settings_settings:
+                    priority: 10
+                    children:
+                      - gwd_config.site_email
+          gwd_pages_dropdown:
+                    priority: 50
+                    children:
+                      gwd_contact_link:
+                        priority: 60
+                        children:
+                          gwd_contact_settings:
+                            priority: 10
+                            children:
+                              - gwd_config.contact_page_title
+                              - gwd_config.contact_page_to_email
+
+
+
