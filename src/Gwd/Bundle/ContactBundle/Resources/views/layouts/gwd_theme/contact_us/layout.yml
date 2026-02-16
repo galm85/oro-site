@@ -39,3 +39,11 @@ layout:
         blockType: content_block
         options:
           alias: contact-information
+
+
+    - '@add':
+        id: contact_script
+        parentId: head
+        blockType: script
+        options:
+          src: bundles/contact/js/contact.js
