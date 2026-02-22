@@ -1,0 +1,5 @@
+layout:
+    actions:
+        - '@setBlockTheme':
+            themes:
+                - '@GwdTheme/layouts/gwd_theme/imports/oro_product_grid/grid.html.twig'
