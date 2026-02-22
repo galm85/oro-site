@@ -1,0 +1,14 @@
+layout:
+    actions:
+        - '@setOption':
+              id: breadcrumbs
+              optionName: breadcrumbs
+              optionValue: '=data["category_breadcrumbs"].getItems()'
+
+        - '@setOption':
+              id: page_main
+              optionName: attr.class
+              optionValue: 'gwd-category-page'
+
+        - '@remove':
+              id: category_long_descriptions

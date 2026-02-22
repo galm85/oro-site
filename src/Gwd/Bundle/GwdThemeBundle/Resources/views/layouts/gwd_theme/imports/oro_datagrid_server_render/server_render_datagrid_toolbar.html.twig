@@ -1,0 +1,219 @@
+{% block __oro_datagrid_server_render__datagrid_toolbar_widget %}
+    {% set attr = attr|merge({
+        class: attr.class|default('') ~ " datagrid-toolbar"
+    }) %}
+    {% set toolbarPosition = attr['data-grid-toolbar'] %}
+    {% do block|merge_context({
+        'toolbarPosition': toolbarPosition
+    }) %}
+    <div{{ block('block_attributes') }}>
+        {% for child in block -%}
+            {% if child.vars.visible %}
+                {{ block_widget(child, {attr: {'data-grid-toolbar': toolbarPosition}}) }}
+            {% endif %}
+        {%- endfor %}
+    </div>
+{% endblock %}
+
+{% block __datagrid_toolbar__datagrid_toolbar_leftside_container_widget %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+    {% do block|merge_context({
+        'toolbarPosition': toolbarPosition
+    }) %}
+    <div class="datagrid-toolbar__start" data-section="left-side">
+        {% if toolbarPosition == 'top' %}
+            <div class="actions-panel" data-grid-extra-actions-panel></div>
+        {% endif %}
+        {% for child in block -%}
+            {% if child.vars.visible %}
+                {{ block_widget(child, {attr: {'data-grid-toolbar': toolbarPosition}}) }}
+            {% endif %}
+        {%- endfor %}
+    </div>
+{% endblock %}
+
+{% block __datagrid_toolbar__datagrid_toolbar_pagination_info_widget %}
+
+{% endblock %}
+
+{%- block __datagrid_toolbar__datagrid_toolbar_rightside_container_widget -%}
+    <div class="datagrid-toolbar__end" data-section="right-side">
+        {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+        {% do block|merge_context({
+            'toolbarPosition': toolbarPosition
+        }) %}
+        {% if toolbarPosition != 'bottom' %}
+            <div data-grid-pagination-info class="datagrid-toolbar-pagination-info"></div>
+        {% endif %}
+        {% for child in block -%}
+            {% if child.vars.visible %}
+                {{ block_widget(child, {attr: {'data-grid-toolbar': toolbarPosition}}) }}
+            {% endif %}
+        {%- endfor %}
+
+    </div>
+{%- endblock -%}
+
+{% block __oro_datagrid_server_render__datagrid_toolbar_pagination_widget %}
+    {% import '@OroUI/layouts/renderIcon.html.twig' as renderIcon %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+    {% if toolbarPosition == 'bottom' %}
+        <div{{ block('block_attributes') }}>
+            {% set metadata = oro_datagrid_metadata(datagrid) %}
+            {% set data = oro_datagrid_data(datagrid) %}
+
+            {% set totalRecords = data.options.totalRecords is defined ? data.options.totalRecords : 0 %}
+            {% set pageSize = metadata.state.pageSize %}
+
+            {% set currentPage = metadata.state.currentPage %}
+            {% set currentIndex = currentPage - 1 %}
+            {% set totalPages = pageSize == 0 ? 1 : (totalRecords / pageSize)|round(0, 'ceil') %}
+            {% set range = 1 %}
+            {% set showAtStartEnd = 4 %}
+
+            {% if isMobileVersion() %}
+                {% set range = 0 %}
+                {% set showAtStartEnd = 3 %}
+            {% endif %}
+
+            <div class="oro-pagination__pager {% if totalPages <= pagination_threshold %}oro-pagination__pager--stepper{% endif %}">
+                <a
+                        role="button" href="{% if currentPage <= 1 %}#{% else %}{{ oro_datagrid_get_page_url(datagrid, currentPage - 1) }}{% endif %}"
+                        class="oro-pagination-arrow oro-pagination__prev{% if currentPage <= 1 %} disabled{% endif %}"
+                        data-grid-pagination-trigger data-grid-pagination-direction="prev"
+                        aria-label="{{ "oro.datagrid.pagination.prev.aria_label"|trans }}"
+                >
+                    {{ renderIcon.icon({name: 'chevron-left', extraClass: 'oro-pagination__icon'}) }}
+                </a>
+                {% if totalPages <= pagination_threshold %}
+                    {% set pages = 1..totalPages %}
+                    {% set startThreshold = currentIndex - range %}
+                    {% set endThreshold = currentIndex + range %}
+                    {% set startThresholdLength = range * 2 + 1 %}
+
+                    {% if startThreshold < 0 %}
+                        {% set startThreshold = 0 %}
+                        {% set endThreshold = endThreshold + startThreshold * -1 %}
+                    {% endif %}
+
+                    {% if startThreshold < showAtStartEnd - range %}
+                        {% set startThreshold = 0 %}
+                        {% set endThreshold = showAtStartEnd %}
+                        {% set startThresholdLength = showAtStartEnd + 1 %}
+                    {% endif %}
+
+                    {% if endThreshold > totalPages - showAtStartEnd %}
+                        {% set endThreshold = totalPages %}
+                        {% set startThreshold = totalPages - showAtStartEnd - 1 %}
+                        {% set startThresholdLength = showAtStartEnd + 1 %}
+                    {% endif %}
+
+                    {% if pages|length <= showAtStartEnd %}
+                        {% set startThreshold = 0 %}
+                        {% set endThreshold = showAtStartEnd %}
+                        {% set startThresholdLength = showAtStartEnd + 1 %}
+                    {% endif %}
+
+                    {% set middle = pages|slice(startThreshold, startThresholdLength) %}
+                    {% set start = pages|slice(0, startThreshold) %}
+                    {% set end = pages|slice(endThreshold, pages|length) %}
+
+                    {% if start|length > 2 %}
+                        {% set start = start|slice(0, 1)|merge(['...']) %}
+                    {% endif %}
+
+                    {% if end|length > 2 %}
+                        {% set end = [end|last]|merge(['...'])|reverse %}
+                    {% endif %}
+
+                    {% set final = start|merge(middle)|merge(end) %}
+
+                    {% for page in final %}
+                        <a type="button" role="button" href="{{ oro_datagrid_get_page_url(datagrid, page) }}" class="oro-pagination__page-to {% if page == currentPage %}oro-pagination__page-to--active{% endif %}" data-grid-pagination-trigger data-grid-pagination="<%- handle.label %>">
+                            {{ page }}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <input
+                            type="number"
+                            class="input oro-pagination__input"
+                            aria-label="{{ "oro.datagrid.pagination.input.aria_label"|trans }}"
+                            value="{{ currentPage }}"
+                            data-grid-pagination-trigger-input
+                    />
+                    <span class="oro-pagination__total">
+                        {% set totalPagesWithAMarkup = '<span data-grid-pagination-pages>' ~ totalPages ~ '</span>' %}
+                        {{ "oro.datagrid.pagination.totalPages"|trans({'%totalPages%': totalPagesWithAMarkup})|raw }}
+                    </span>
+                {% endif %}
+                <a
+                        role="button" href="{% if currentPage >= totalPages %}#{% else %}{{ oro_datagrid_get_page_url(datagrid, currentPage + 1) }}{% endif %}"
+                        class="oro-pagination-arrow oro-pagination__next{% if currentPage >= totalPages %} disabled{% endif %}"
+                        data-grid-pagination-trigger data-grid-pagination-direction="next"
+                        aria-label="{{ "oro.datagrid.pagination.next.aria_label"|trans }}"
+                >
+                    {{ renderIcon.icon({name: 'chevron-right', extraClass: 'oro-pagination__icon'}) }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block __oro_datagrid_server_render__datagrid_toolbar_page_size_widget %}
+    {% set metadata = oro_datagrid_metadata(datagrid) %}
+    {% set perPage = metadata.state.pageSize %}
+    {% set pageSize = metadata.options.toolbarOptions.pageSize %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+
+    {% if pageSize.hide == false and pageSize.items|length > 0 and toolbarPosition == 'bottom' %}
+        <div{{ block('block_attributes') }}>
+            <div class="page-size">
+                {% set labelId = 'datagrid-toolbar-label-'|uniqid %}
+                {% set label = 'oro.datagrid.pagesize.labelShort'|trans ~ ':' %}
+                <div class="select-inline-label">
+                    {% apply spaceless %}
+                        <select id="{{ labelId }}" data-label="{{ label }}" class="select" name="action" data-grid-pagesize-selector>
+                            {% for value in pageSize.items %}
+                                <option value="{{ value }}"
+                                        data-grid-pagesize-trigger{% if value == perPage %} selected{% endif %}
+                                >{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    {% endapply %}
+                    <label for="{{ labelId }}" class="select-inline-label__label">{{ label }}</label>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block __datagrid_toolbar__datagrid_toolbar_actions_widget %}
+    {% set attr = layout_attr_defaults(attr, {
+        '~class': ' datagrid-tool actions-panel-container'
+    }) %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+
+    {% if toolbarPosition != 'bottom' %}
+        <div{{ block('block_attributes') }}>{{ block_widget(block) }}</div>
+    {% endif %}
+{% endblock %}
+
+{% block __datagrid_toolbar__datagrid_items_counter_widget %}
+    {% set attr = attr|merge({
+        class: attr.class|default('') ~ " datagrid-tool oro-items-counter",
+        'data-grid-items-counter': ''
+    }) %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+
+    {% if toolbarPosition != 'bottom' %}
+        <div{{ block('block_attributes') }}>{{ block_widget(block) }}</div>
+    {% endif %}
+{% endblock %}
+
+{% block __datagrid_toolbar__datagrid_mass_actions_panel_widget %}
+    {% set toolbarPosition = attr['data-grid-toolbar']|default('') %}
+
+    {% if toolbarPosition != 'bottom' %}
+        <div class="actions-panel" data-grid-mass-actions-panel=""></div>
+    {% endif %}
+{% endblock %}
